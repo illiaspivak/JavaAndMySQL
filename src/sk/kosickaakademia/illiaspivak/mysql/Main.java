@@ -16,5 +16,8 @@ public class Main {
 
         Country country = database.getCountryInfo(name);
         output.printCountryInfo(country);
+
+        City newCity = new City("Hadiach",23341, "Poltava Oblast","Ukraine");
+        database.insertCity(newCity);
     }
 }
