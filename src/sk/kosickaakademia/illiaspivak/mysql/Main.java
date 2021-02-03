@@ -11,13 +11,17 @@ public class Main {
         Database database = new Database();
         Output output = new Output();
         String name = "Ukraine";
+
+        database.updatePopulation("Ukraine", "Konotop", 80000);
+
+
         List<City> list = database.getCities(name);
         output.printCities(list);
 
         Country country = database.getCountryInfo(name);
         output.printCountryInfo(country);
 
-        City newCity = new City("Hadiach",23341, "Poltava Oblast","Ukraine");
-        database.insertCity(newCity);
+        //City newCity = new City("Hadiach",23341, "Poltava Oblast","Ukraine");
+        //database.insertCity(newCity);
     }
 }

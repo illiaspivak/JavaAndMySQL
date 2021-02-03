@@ -120,4 +120,44 @@ public class Database {
             }
         }
     }
+
+    public boolean existCityInCountry(String country, String city){
+        String query = "SELECT Name, CountryCode from city " +
+                "WHERE CountryCode LIKE ?";
+        try {
+            Connection connection = getConnection();
+            String code = getCountryCode(country);
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, code);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                if (city.equals(rs.getString("Name")))
+                    return true;
+            }
+            connection.close();
+        } catch (Exception e) { e.printStackTrace(); }
+        System.out.println("Such a city does not exist in this country");
+        return false;
+    }
+
+    public void updatePopulation(String country, String city, int population){
+        if(existCityInCountry(country, city)) {
+            String query = "UPDATE city SET Info  = ? WHERE Name = ?";
+            try {
+                Connection con = getConnection();
+                if (population <= 0) {
+                    System.out.println("Error");
+                    return;
+                }
+                String json = "{\"Population\": " + population + "}";
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.setString(1, json);
+                ps.setString(2, city);
+                ps.executeUpdate();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
