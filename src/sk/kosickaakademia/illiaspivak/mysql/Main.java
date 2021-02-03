@@ -1,6 +1,7 @@
 package sk.kosickaakademia.illiaspivak.mysql;
 
 import sk.kosickaakademia.illiaspivak.mysql.entity.City;
+import sk.kosickaakademia.illiaspivak.mysql.entity.Country;
 import sk.kosickaakademia.illiaspivak.mysql.output.Output;
 
 import java.util.List;
@@ -12,5 +13,8 @@ public class Main {
         String name = "Ukraine";
         List<City> list = database.getCities(name);
         output.printCities(list);
+
+        Country country = database.getCountryInfo(name);
+        output.printCountryInfo(country);
     }
 }

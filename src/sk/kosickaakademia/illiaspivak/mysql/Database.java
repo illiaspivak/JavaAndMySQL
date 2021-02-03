@@ -1,6 +1,7 @@
 package sk.kosickaakademia.illiaspivak.mysql;
 
 import sk.kosickaakademia.illiaspivak.mysql.entity.City;
+import sk.kosickaakademia.illiaspivak.mysql.entity.Country;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,5 +39,35 @@ public class Database {
             ex.printStackTrace();
         }
         return list;
+    }
+
+    public Country getCountryInfo (String country){
+        String query = "SELECT country.name, country.code, city.name, " +
+                " JSON_UNQUOTE(JSON_EXTRACT(doc, '$.geography.Continent')) AS Continent, " +
+                " JSON_EXTRACT(doc, '$.geography.SurfaceArea') AS Area" +
+                " FROM country " +
+                " INNER JOIN city ON country.Capital = city.ID " +
+                " INNER JOIN countryinfo ON country.code = countryinfo._id " +
+                " WHERE country.name like ?";
+
+        Country countryInfo = null;
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, country);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                String code3=rs.getString("country.code");
+                String capitalCity=rs.getString("city.name");
+                String continent=rs.getString("continent");
+                int area=rs.getInt("Area");
+                countryInfo = new Country(country, code3, capitalCity,area, continent);
+            }
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return countryInfo;
     }
 }

@@ -1,6 +1,7 @@
 package sk.kosickaakademia.illiaspivak.mysql.output;
 
 import sk.kosickaakademia.illiaspivak.mysql.entity.City;
+import sk.kosickaakademia.illiaspivak.mysql.entity.Country;
 
 import java.util.List;
 
@@ -9,6 +10,21 @@ public class Output {
         System.out.println("List of cities: ");
         for(City c : cities){
             System.out.println("   - "+c.getName()+ " ( "+c.getPopulation()+" ) ");
+        }
+        System.out.println();
+        System.out.println("------------------------------------------------");
+        System.out.println();
+    }
+
+    public void printCountryInfo(Country country){
+        if(country==null){
+            System.out.println("Country does not exist !");
+        }
+        else {
+            System.out.println("Name: " + country.getName() + " ( " + country.getCode3() + " )");
+            System.out.println("Capital city: " + country.getCapitalCity());
+            System.out.println("Continent: " + country.getContinent());
+            System.out.println("Surface area : " + country.getArea());
         }
     }
 }
