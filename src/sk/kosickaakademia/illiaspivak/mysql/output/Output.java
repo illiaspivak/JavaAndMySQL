@@ -26,6 +26,20 @@ public class Output {
             System.out.println("Continent: " + country.getContinent());
             System.out.println("Surface area : " + country.getArea());
         }
+        System.out.println();
+        System.out.println("------------------------------------------------");
+        System.out.println();
+    }
+
+    public void printCapitalCity(Country country){
+        if(country==null){
+            System.out.println("Country does not exist !");
+        }
+        else {
+            System.out.println(country.getName());
+            System.out.println(country.getCapitalCity());
+            System.out.println(country.getPop());
+        }
     }
 
     public void printCountryInContinent(List<String> country){
@@ -37,4 +51,12 @@ public class Output {
         System.out.println("------------------------------------------------");
         System.out.println();
     }
+
+    public void printCapitalCities(List <Country> list){
+        for (Country cap : list){
+            System.out.println("Country: " + cap.getName() + "; Capital city: " + cap.getCapitalCity() + "; Population: " + cap.getPop());
+        }
+    }
+
+
 }

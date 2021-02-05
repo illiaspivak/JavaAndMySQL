@@ -12,17 +12,23 @@ public class Main {
         Output output = new Output();
         String name = "Ukraine";
 
-        database.updatePopulation("Ukraine", "Konotop", 80000);
+      //  database.updatePopulation("Ukraine", "Konotop", 80000);
 
 
         List<City> list = database.getCities(name);
         output.printCities(list);
 
-        List<String> list1 = database.getCountryCodeInContinent("Europe");
-        output.printCountryInContinent(list1);
+      //  List<String> list1 = database.getCountryCodeInContinent("Europe");
+      //  output.printCountryInContinent(list1);
 
         Country country = database.getCountryInfo(name);
         output.printCountryInfo(country);
+
+       // Country capitalCity = database.getCapitalCity("UKR");
+       // output.printCapitalCity(capitalCity);
+
+        List<Country> capitalCityList = database.getCapitalCities("Europe");
+        output.printCapitalCities(capitalCityList);
 
         //City newCity = new City("Hadiach",23341, "Poltava Oblast","Ukraine");
         //database.insertCity(newCity);

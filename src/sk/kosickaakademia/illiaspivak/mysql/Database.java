@@ -179,4 +179,35 @@ public class Database {
         } catch (Exception e) { e.printStackTrace(); }
         return countries;
     }
+
+    public Country getCapitalCity(String countryCode){
+        String query = "SELECT Capital, country.Name, city.Name, JSON_EXTRACT(Info, '$.Population') AS Population " +
+                "FROM country " +
+                "INNER JOIN city ON country.Capital = city.ID " +
+                "WHERE country.Code LIKE ?";
+        Country continentInfo = null;
+        try {
+            Connection connection = getConnection();
+            if (connection != null){
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1, countryCode);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    String name = rs.getString("city.Name");
+                    String country = rs.getString("country.Name");
+                    int pop = rs.getInt("Population");
+                    continentInfo = new Country(country, name, pop);
+                }
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+        return continentInfo;
+    }
+
+    public List<Country> getCapitalCities(String continent){
+        List<Country> capitals = new ArrayList<>();
+        for (String country : getCountryCodeInContinent(continent)){
+            capitals.add(getCapitalCity(country.replace("\"", "")));
+        }
+        return capitals;
+    }
 }
