@@ -160,4 +160,23 @@ public class Database {
             }
         }
     }
+
+    public List<String> getCountryCodeInContinent(String continent){
+        List<String> countries = new ArrayList<>();
+        String query = "SELECT JSON_EXTRACT(doc, '$._id') AS Code, JSON_EXTRACT(doc, '$.geography.Continent') AS Con " +
+                "FROM countryinfo " +
+                "WHERE JSON_EXTRACT(doc, '$.geography.Continent') = ?";
+        try {
+            Connection connection = getConnection();
+            if (connection != null){
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1 , continent);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()){
+                    countries.add(rs.getString("Code"));
+                }
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+        return countries;
+    }
 }

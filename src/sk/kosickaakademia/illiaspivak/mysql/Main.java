@@ -18,6 +18,9 @@ public class Main {
         List<City> list = database.getCities(name);
         output.printCities(list);
 
+        List<String> list1 = database.getCountryCodeInContinent("Europe");
+        output.printCountryInContinent(list1);
+
         Country country = database.getCountryInfo(name);
         output.printCountryInfo(country);
 

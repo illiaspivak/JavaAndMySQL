@@ -27,4 +27,14 @@ public class Output {
             System.out.println("Surface area : " + country.getArea());
         }
     }
+
+    public void printCountryInContinent(List<String> country){
+        System.out.println("List of country: ");
+        for(String c : country){
+            System.out.println("  - " + c);
+        }
+        System.out.println();
+        System.out.println("------------------------------------------------");
+        System.out.println();
+    }
 }

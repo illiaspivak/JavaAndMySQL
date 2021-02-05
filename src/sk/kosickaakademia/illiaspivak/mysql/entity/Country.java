@@ -6,6 +6,13 @@ public class Country {
     private String capitalCity;
     private int area;
     private String continent;
+    private int pop;
+
+    public Country(String name, String capitalCity, int pop) {
+        this.name = name;
+        this.capitalCity = capitalCity;
+        this.pop = pop;
+    }
 
     public Country(String name, String code3, String capitalCity, int area, String continent) {
         this.name = name;
@@ -33,5 +40,9 @@ public class Country {
 
     public String getContinent() {
         return continent;
+    }
+
+    public int getPop() {
+        return pop;
     }
 }
