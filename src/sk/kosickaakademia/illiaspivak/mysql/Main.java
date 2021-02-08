@@ -15,8 +15,8 @@ public class Main {
       //  database.updatePopulation("Ukraine", "Konotop", 80000);
 
 
-        List<City> list = database.getCities(name);
-        output.printCities(list);
+       // List<City> list = database.getCities(name);
+       // output.printCities(list);
 
       //  List<String> list1 = database.getCountryCodeInContinent("Europe");
       //  output.printCountryInContinent(list1);
@@ -27,10 +27,13 @@ public class Main {
        // Country capitalCity = database.getCapitalCity("UKR");
        // output.printCapitalCity(capitalCity);
 
-        List<Country> capitalCityList = database.getCapitalCities("Europe");
-        output.printCapitalCities(capitalCityList);
+       // List<Country> capitalCityList = database.getCapitalCities("Europe");
+       // output.printCapitalCities(capitalCityList);
 
         //City newCity = new City("Hadiach",23341, "Poltava Oblast","Ukraine");
         //database.insertCity(newCity);
+        database.existCity("UKR", "Kyiv");
+
+       // database.insertNewMonument("UKR" , "Kyiv","Motherland Monument");
     }
 }
