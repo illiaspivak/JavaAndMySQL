@@ -2,6 +2,7 @@ package sk.kosickaakademia.illiaspivak.mysql.output;
 
 import sk.kosickaakademia.illiaspivak.mysql.entity.City;
 import sk.kosickaakademia.illiaspivak.mysql.entity.Country;
+import sk.kosickaakademia.illiaspivak.mysql.entity.Monument;
 
 import java.util.List;
 
@@ -55,6 +56,12 @@ public class Output {
     public void printCapitalCities(List <Country> list){
         for (Country cap : list){
             System.out.println("Country: " + cap.getName() + "; Capital city: " + cap.getCapitalCity() + "; Population: " + cap.getPop());
+        }
+    }
+
+    public void printMonuments(List <Monument> list){
+        for (Monument monument : list){
+            System.out.println("   - " + monument.getId() + " " + monument.getName() + " " + monument.getCountry() + " " + monument.getCity());
         }
     }
 

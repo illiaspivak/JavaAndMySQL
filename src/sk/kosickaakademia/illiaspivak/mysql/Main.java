@@ -37,5 +37,6 @@ public class Main {
        // database.insertNewMonument("UKR" , "Kyiv","Motherland Monument");
 
         List<Monument> monuments = database.getMonuments();
+        output.printMonuments(monuments);
     }
 }
