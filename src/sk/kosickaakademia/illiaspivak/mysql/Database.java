@@ -2,6 +2,7 @@ package sk.kosickaakademia.illiaspivak.mysql;
 
 import sk.kosickaakademia.illiaspivak.mysql.entity.City;
 import sk.kosickaakademia.illiaspivak.mysql.entity.Country;
+import sk.kosickaakademia.illiaspivak.mysql.entity.Monument;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -256,5 +257,30 @@ public class Database {
             e.printStackTrace();
         }
         return true;
+    }
+
+    public List<Monument>  getMonuments() {
+        String query= "SELECT monument.id AS id, monument.name AS name, city.Name AS city, country.Name AS country " +
+                "       FROM monument " +
+                "        INNER JOIN city ON city.ID = monument.city " +
+                "         INNER JOIN country ON country.Code = city.CountryCode ";
+        ArrayList<Monument> monuments = new ArrayList<>();
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String city = rs.getString("city");
+                String country = rs.getString("country");
+                Monument monument = new Monument(country, city, name, id);
+                monuments.add(monument);
+            }
+            con.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return monuments;
     }
 }

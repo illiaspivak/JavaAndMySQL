@@ -2,6 +2,7 @@ package sk.kosickaakademia.illiaspivak.mysql;
 
 import sk.kosickaakademia.illiaspivak.mysql.entity.City;
 import sk.kosickaakademia.illiaspivak.mysql.entity.Country;
+import sk.kosickaakademia.illiaspivak.mysql.entity.Monument;
 import sk.kosickaakademia.illiaspivak.mysql.output.Output;
 
 import java.util.List;
@@ -32,8 +33,9 @@ public class Main {
 
         //City newCity = new City("Hadiach",23341, "Poltava Oblast","Ukraine");
         //database.insertCity(newCity);
-        database.existCity("UKR", "Kyiv");
 
        // database.insertNewMonument("UKR" , "Kyiv","Motherland Monument");
+
+        List<Monument> monuments = database.getMonuments();
     }
 }
